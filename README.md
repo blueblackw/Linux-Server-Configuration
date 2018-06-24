@@ -1,7 +1,7 @@
 # Linux Server Configuration
 A baseline installation of a Linux distribution on a virtual machine and prepare it to host the web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
-## Project Description
+## Project Tools Description 
 - Public IP address: 54.173.124.133
 - Acessible SSH port: 2200
 - Application URL: http://54.173.124.133.xip.io/ 
@@ -9,6 +9,7 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 - virtual private server: [Amazon Lightsail](https://lightsail.aws.amazon.com)
 - Deployed web application: [Item Catalog](https://github.com/blueblackw/item-catalog)
 - Database server: [PostgreSQL](https://www.postgresql.org)
+- Local machine: MacBook Pro
 
 ## Configuration Steps
 ### Step 1: Create an instance with Amazon Lightsail
@@ -42,7 +43,7 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 3. Restart SSH: `sudo service ssh restart`.
 
 ### Step 5: Configure the Uncomplicated Firewall (UFW)
-1. Check to see the firewall status: `sudo ufw status`.
+1. Check to see the firewall status: `sudo ufw status`. It should look like this:
 2. Set the ufw firewall to block everything coming in: `sudo ufw default deny incoming`.
 3. Set the ufw firewall to allow everything outgoing: `sudo ufw default allow outgoing`.
 4. Set the ufw firewall to allow SSH: `sudo ufw allow ssh`.
@@ -66,6 +67,15 @@ To                         Action      From
 123/udp (v6)               ALLOW       Anywhere (v6)             
 22 (v6)                    DENY        Anywhere (v6)
 ```
-   
+11. Update the external (Amazon Lightsail) firewall on the browser: 
+- Click on the 'Manage' option of the Amazon Lightsail Instance.
+- Select "Networking" tab.
+- Change the firewall configuration to match the internal firewall settings above: only ports `80`(TCP), `123`(UDP), and `2200`(TCP) should be allowed. Deny the default port `22`.
+12. From terminal on local machine, log in to the ubuntu instance by running:
+`ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`
 
+**Note:** Connecting to the instance through a browser no longer works because Lightsail's browser-based SSH access only works through port 22, which is now denied.
+
+#### Reference 
+- [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
 
