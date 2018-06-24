@@ -79,3 +79,15 @@ To                         Action      From
 #### Reference 
 - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
 
+### Step 6: Use Fail2Ban to ban attackers
+Install fail2ban in order to mitigate brute force attacks by users and bots alike.
+1. `sudo apt-get update`.
+2. `sudo apt-get install fail2ban`
+3. Install the sendmail package to send the alerts to the admin user: `sudo apt-get install sendmail`
+4. Create a copy of a file: `sudo cp /etc/fail2ban/jail.conf /etc/fail2ban/jail.local`.
+5. Open the jail.local and edit it: `sudo vi /etc/fail2ban/jail.local`. Change the *destemail* field `useremail@domain` in `destemail = useremail@domain` to admin user's email address.
+#### Reference
+- [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
+
+### Step 7: Create a new user named `grader` and give sudo permissions
+1. 
