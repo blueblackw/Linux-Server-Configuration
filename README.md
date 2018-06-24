@@ -89,5 +89,15 @@ Install fail2ban in order to mitigate brute force attacks by users and bots alik
 #### Reference
 - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
 
-### Step 7: Create a new user named `grader` and give sudo permissions
-1. 
+### Step 7: Create a new user named `grader` and give sudo permissions to it
+At this point, user still logs in as `ubuntu` user.
+1. Run `sudo adduser grader`.
+2. Enter a password (twice) and fill out information for this new user.
+Now the `grader` user is created successfully.
+3. Edit the sudoers file: `sudo vi visudo`.
+4. Search for a line that looks like this: `root ALL=(ALL:ALL) ALL`
+5. Below this line, add a new line to give sudo privileges to grader user.
+   ```
+   root    ALL=(ALL:ALL) ALL
+   grader  ALL=(ALL:ALL) ALL
+   ```
