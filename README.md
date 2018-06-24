@@ -52,7 +52,8 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 8. Set the ufw firewall to deny port `22`: sudo ufw deny 22.
 9. Enable the ufw firewall: `sudo ufw enable`.
 10. Check ufw status again: `sudo ufw status`. If done correctly, it should look like this:
-`Status: active
+```
+Status: active
 
 To                         Action      From
 --                         ------      ----
@@ -63,7 +64,8 @@ To                         Action      From
 2200/tcp (v6)              ALLOW       Anywhere (v6)             
 80/tcp (v6)                ALLOW       Anywhere (v6)             
 123/udp (v6)               ALLOW       Anywhere (v6)             
-22 (v6)                    DENY        Anywhere (v6)`
+22 (v6)                    DENY        Anywhere (v6)
+```
    
 
 
