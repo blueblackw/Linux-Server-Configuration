@@ -338,7 +338,8 @@ User now logs in as `grader` user.
    
  ### Step 15: Restart Apache to launch the app:
  1. restart Apache: `sudo service apache2 restart`
- 2. Type `http://54.173.124.133.xip.io/` in browser.
+ 2. Type **http://54.173.124.133.xip.io** in browser.
+ **Note:** The public ip **http://54.173.124.133** and URL **ec2-54-173-124-133.compute-1.amazonaws.com 54.173.124.133.xip.io** do not work for google log in. There is an "400 invalid_request" error after clicking on the google login button. Must use **http://54.173.124.133.xip.io** for the function of google login.
  
  Special thanks to [boisalai](https://github.com/boisalai), [iliketomatoes](https://github.com/iliketomatoes), [bencam](https://github.com/bencam) for really helpful documents.
 
