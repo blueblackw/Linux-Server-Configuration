@@ -214,15 +214,26 @@ User now logs in as `grader` user.
    ```
    sudo git clone https://github.com/blueblackw/item-catalog.git catalog
    ```
-   Now there is a new folder **catalog** in directory `/var/www/catalog`
-5. Change to directory `/var/www`: `cd /var/www`.
-6. From the `/var/www` directory, change the ownership of the `catalog` directory to user `grader`:
+   Now there is a new folder **catalog** in directory `/var/www/catalog`.
+5. Make a **catalog.wsgi** file to serve the application over the mod_wsgi. That file should look like this:
+   ```
+   import sys
+   import logging
+   logging.basicConfig(stream=sys.stderr)
+   sys.path.insert(0, "/var/www/catalog/")
+
+   from catalog import app as application
+   application.secret_key = 'supersecretkey'
+   ```
+   This file **catalog.wsgi** should be in the directory `/var/www/catalog`.
+6. Change to directory `/var/www`: `cd /var/www`.
+7. From the `/var/www` directory, change the ownership of the `catalog` directory to user `grader`:
    ```
    sudo chown -R grader:grader catalog/
    ```
-7. Change to the `/var/www/catalog/catalog` directory: `cd /var/www/catalog/catalog`.
-8. Change the name of the **views.py** file to **__init__.py**: `mv views.py __init__.py`.
-9. In __init__.py, at the end of the file find:
+8. Change to the `/var/www/catalog/catalog` directory: `cd /var/www/catalog/catalog`.
+9. Change the name of the **views.py** file to **__init__.py**: `mv views.py __init__.py`.
+10. In __init__.py, at the end of the file find:
    ```
    app.run(host='0.0.0.0', port=5000)
    ```
@@ -230,14 +241,14 @@ User now logs in as `grader` user.
    ```
    app.run()
    ```
-10. In __init__.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-11. In database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-12. In db_init.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-13. Set up the database:
+11. In __init__.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+12. In database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+13. In db_init.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+14. Set up the database:
     ```
     python /var/www/catalog/catalog/database_setup.py
     ```
-14. Add data into the database:
+15. Populate the database:
     ```
     python /var/www/catalog/catalog/db_init.py.
     ```
@@ -245,7 +256,7 @@ User now logs in as `grader` user.
 [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
 
-### Install virtual environment and dependencies
+### Step 13: Install virtual environment and dependencies
 1. Install pip: `sudo apt-get install python-pip`.
 2. Install virtualenv: `sudo apt-get install python-virtualenv`.
 3. Change to directory `/var/www/catalog/catalog`: `cd /var/www/catalog/catalog`.
@@ -256,6 +267,71 @@ User now logs in as `grader` user.
 8. Install all the other project's dependencies: `pip install bleach httplib2 request oauth2client sqlalchemy python-psycopg2`.
 #### Reference
 [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps), [Dabapps](https://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/).
+
+
+### Step 14: Configure and enable a new virtual host
+1. Create a virtual host conifg file: `sudo vi /etc/apache2/sites-available/catalog.conf`.
+2. Add following lines of code to the file:
+   ```
+   <VirtualHost *:80>
+    ServerName 54.173.124.133
+    ServerAlias ec2-54-173-124-133.compute-1.amazonaws.com 54.173.124.133.xip.io
+    ServerAdmin admin@54.173.124.133
+    WSGIDaemonProcess catalog python-path=/var/www/catalog:/var/www/catalog/venv/lib/python2.7/site-packages
+    WSGIProcessGroup catalog
+    WSGIScriptAlias / /var/www/catalog/catalog.wsgi
+    <Directory /var/www/catalog/catalog/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    Alias /static /var/www/catalog/catalog/static
+    <Directory /var/www/catalog/catalog/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+   </VirtualHost>
+   ```
+3. Enable the new virtual host: `sudo a2ensite catalog`. User should see:
+   ```
+   Enabling site catalog.
+   To activate the new configuration, you need to run:
+     service apache2 reload
+   ```
+4. Reload Apache: `sudo service apache2 reload`.
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-run-django-with-mod_wsgi-and-apache-with-a-virtualenv-python-environment-on-a-debian-vps)
+
+
+### Step 15: Authenticate login through Google:
+1. Create a new project on the Google API Console. 
+   - Go to [Google Cloud Plateform](https://console.cloud.google.com/home/dashboard?project=udacity-linux-class&pli=1).
+   - Click `APIs & services` on the left.
+   - Click `Credentials`.
+   - Create an OAuth Client ID (under the Credentials tab).
+   - Add **http://54.173.124.133.xip.io** and **http://54.173.124.133** to Authorized JavaScript origins.
+   - Add **http://54.173.124.133.xip.io/login**, **http://54.173.124.133.xip.io/gconnect** and **http://54.173.124.133.xip.io/oauth2callback** to Authorized redirect URIs.
+   - Download the corresponding JSON file, open it et copy the contents.
+2. Open file `/var/www/catalog/catalog/client_secrets.json` and paste the previous copied contents into the this file.
+3. Open file `/var/www/catalog/catalog/__init__.py`. 
+   - Change
+   ```
+   CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+   ```
+   to:
+   ```
+   CLIENT_ID = json.loads(open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id']
+   ```
+   - Change
+   ```
+   oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+   ```
+   to:
+   ```
+   oauth_flow = flow_from_clientsecrets('/var/www/catalog/catalog/client_secrets.json', scope='')
+   ```
 
  
 
