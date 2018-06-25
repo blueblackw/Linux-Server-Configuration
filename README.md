@@ -226,9 +226,38 @@ User now logs in as `grader` user.
    ```
    app.run(host='0.0.0.0', port=5000)
    ```
-   Change this line to: `app.run()`.
+   Change this line to: 
+   ```
+   app.run()
+   ```
+10. In __init__.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+11. In database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+12. In db_init.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+13. Set up the database:
+    ```
+    python /var/www/catalog/catalog/database_setup.py
+    ```
+14. Add data into the database:
+    ```
+    python /var/www/catalog/catalog/db_init.py.
+    ```
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
-app.run()
+
+### Install virtual environment and dependencies
+1. Install pip: `sudo apt-get install python-pip`.
+2. Install virtualenv: `sudo apt-get install python-virtualenv`.
+3. Change to directory `/var/www/catalog/catalog`: `cd /var/www/catalog/catalog`.
+4. Create a temporary environment with a new name (e.g. venv): `virtualenv venv`.
+5. Activate the new environment: `source venv/bin/activate`.
+6. Change permissions to the virtual environment folder: `sudo chmod -R 777 venv`.
+7. Install Flask: `pip install Flask`.
+8. Install all the other project's dependencies: `pip install bleach httplib2 request oauth2client sqlalchemy python-psycopg2`.
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps), [Dabapps](https://www.dabapps.com/blog/introduction-to-pip-and-virtualenv-python/).
+
+ 
 
    
 
