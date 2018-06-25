@@ -134,7 +134,21 @@ In this project, the created user `grader` has a password `grader`.
 - From terminal on local machine, log in to virtual machine with `grader` user by:
 
   `ssh -i ~/.ssh/grader_key -p 2200 grader@54.173.124.133`.
+**From now on, user logs in to virtual machine as user `grader`.**
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
+[Ubuntu documentation](https://help.ubuntu.com/community/SSH/OpenSSH/Keys)
 
+
+### Step 9: Configure the local timezone to UTC.
+1. Run `sudo dpkg-reconfigure tzdata`.
+2. In the pop up console, select `None of the above`.
+3. Select `UTC` and confirm. User will see 
+   ```
+   Current default time zone: 'Etc/UTC'
+   Local time is now:      Mon Jun 25 02:17:24 UTC 2018.
+   Universal Time is now:  Mon Jun 25 02:17:24 UTC 2018.
+   ```
    
 
 
