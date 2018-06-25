@@ -53,20 +53,20 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 8. Set the ufw firewall to deny port `22`: sudo ufw deny 22.
 9. Enable the ufw firewall: `sudo ufw enable`.
 10. Check ufw status again: `sudo ufw status`. If done correctly, it should look like this:
-```
-Status: active
+    ```
+    Status: active
 
-To                         Action      From
---                         ------      ----
-2200/tcp                   ALLOW       Anywhere                  
-80/tcp                     ALLOW       Anywhere                  
-123/udp                    ALLOW       Anywhere                  
-22                         DENY        Anywhere                  
-2200/tcp (v6)              ALLOW       Anywhere (v6)             
-80/tcp (v6)                ALLOW       Anywhere (v6)             
-123/udp (v6)               ALLOW       Anywhere (v6)             
-22 (v6)                    DENY        Anywhere (v6)
-```
+    To                         Action      From
+    --                         ------      ----
+    2200/tcp                   ALLOW       Anywhere                  
+    80/tcp                     ALLOW       Anywhere                  
+    123/udp                    ALLOW       Anywhere                  
+    22                         DENY        Anywhere                  
+    2200/tcp (v6)              ALLOW       Anywhere (v6)             
+    80/tcp (v6)                ALLOW       Anywhere (v6)             
+    123/udp (v6)               ALLOW       Anywhere (v6)             
+    22 (v6)                    DENY        Anywhere (v6)
+    ```
 11. Update the external (Amazon Lightsail) firewall on the browser: 
 - Click on the 'Manage' option of the Amazon Lightsail Instance.
 - Select "Networking" tab.
@@ -109,12 +109,12 @@ In this project, the created user `grader` has a password `grader`.
    * run `sudo -l`
    * enter password again
    If a line like the following should appear in the terminal, it means that the user `grader` has sudo permission:
-     ```
-     Matching Defaults entries for grader on ip-172-26-12-173.ec2.internal:
-    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+   ```
+   Matching Defaults entries for grader on ip-172-26-12-173.ec2.internal:
+   env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 
-    User grader may run the following commands on ip-172-26-12-173.ec2.internal:
-    (ALL : ALL) ALL
-    ```
+   User grader may run the following commands on ip-172-26-12-173.ec2.internal:
+   (ALL : ALL) ALL
+   ```
 
 
