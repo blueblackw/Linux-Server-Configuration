@@ -37,10 +37,12 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 1. Notify the system of what package updates are available: run `sudo apt-get update` in terminal.
 2. Download available package updates: run `sudo apt-get upgrade` in terminal.
 
+
 ### Step 4: Change the SSH port from 22 to 2200
 1. Open file /etc/ssh/sshd_config with command `vi /etc/ssh/sshd_config`.
 2. Change the port number on line 5 to `2200`. Save the change.
 3. Restart SSH: `sudo service ssh restart`.
+
 
 ### Step 5: Configure the Uncomplicated Firewall (UFW)
 1. Check to see the firewall status: `sudo ufw status`. It should look like this:
@@ -79,6 +81,7 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 #### Reference 
 - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
 
+
 ### Step 6: Use Fail2Ban to ban attackers
 Install fail2ban in order to mitigate brute force attacks by users and bots alike.
 1. `sudo apt-get update`.
@@ -89,21 +92,16 @@ Install fail2ban in order to mitigate brute force attacks by users and bots alik
 #### Reference
 - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-protect-ssh-with-fail2ban-on-ubuntu-14-04)
 
+
 ### Step 7: Create a new user named `grader` and give sudo permissions to it
 At this point, user still logs in as `ubuntu` user.
 1. Run `sudo adduser grader`.
 2. Enter a password (twice) and fill out information for this new user.
    Now the `grader` user is created successfully.
 In this project, the created user `grader` has a password `grader`.
-3. Edit the sudoers file: `sudo vi visudo`.
-4. Search for a line that looks like this: `root ALL=(ALL:ALL) ALL`
-5. Below this line, add a new line to give sudo privileges to grader user.
-   ```
-   root    ALL=(ALL:ALL) ALL
-   grader  ALL=(ALL:ALL) ALL
-   ```
-6. Save and close the visudo file using CTRL + X and confirm with Y.
-7. Verify the sudo permissions of user `grader`:
+3. Create a new file under the sudoers directory: `sudo vi /etc/sudoers.d/grader`.
+   Add one line `grader ALL=(ALL:ALL) ALL` in this file and save by hitting the Esc key and then enter in “:” along with “wq”.
+4. Verify the sudo permissions of user `grader`:
    * run `su - grader`
    * enter password
    * run `sudo -l`
@@ -116,5 +114,26 @@ In this project, the created user `grader` has a password `grader`.
    User grader may run the following commands on ip-172-26-12-173.ec2.internal:
    (ALL : ALL) ALL
    ```
+  
+  
+### Step 8: Log in to the AWS Lightsail instance with user `grader`
+- On local machine: 
+1. browse to directory `~/.ssh`. Run `ssh-keygen`.
+2. Name the key pair, e.g. `grader_key`.
+3. Enter in a passphrase twice. Two files will be generated, e.g. `~/.ssh/grader_key` and `~/.ssh/grader_key.pub`.
+4. Run `cat ~/.ssh/grader_key.pub` and copy the content in the file.
+- On the grader's virtual machine:
+1. From terminal on local machine, log in to the virtual machine with user `ubuntu` by running 
+   `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`.
+2. In virtual machine, go to `grader`'s home directory by running: `cd /home/grader`.
+3. Create a new directory named `.ssh` by running `mkdir .ssh`.
+4. Create a new file `authorized_keys` by running `sudo vi authorized_keys` and then paste the copied content from `grader_key.pub` on local machine to this file `authorized_keys`. Save file `authorized_keys`.
+5. On virtual machine, give permissions by running `chmod 700 .ssh` and `chmod 644 .ssh/authorized_keys`.
+6. Check in `/etc/ssh/sshd_config` file whether `PasswordAuthentication` is set to `no`. If `PasswordAuthentication` is not set to `no`, set it to `no` and save file.
+7. Restart SSH with `sudo service ssh restart`.
+- From terminal on local machine, log in to virtual machine with `grader` user by:
+  `ssh -i ~/.ssh/grader_key -p 2200 grader@54.173.124.133`.
+
+   
 
 
