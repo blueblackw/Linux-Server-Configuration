@@ -132,6 +132,7 @@ In this project, the created user `grader` has a password `grader`.
 6. Check in `/etc/ssh/sshd_config` file whether `PasswordAuthentication` is set to `no`. If `PasswordAuthentication` is not set to `no`, set it to `no` and save file.
 7. Restart SSH with `sudo service ssh restart`.
 - From terminal on local machine, log in to virtual machine with `grader` user by:
+
   `ssh -i ~/.ssh/grader_key -p 2200 grader@54.173.124.133`.
 
    
