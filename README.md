@@ -163,7 +163,7 @@ In this project, the created user `grader` has a password `grader`.
    
    `sudo apt-get install libapache2-mod-wsgi python-dev`
 2. Enable `mod_wsgi` by running: `sudo a2enmod wsgi`.
-
+3. Start apache: `sudo service apache2 start`.
 
 ### Step 11: Install and configure PostgreSQL
 1. Install PostgreSQL: `sudo apt-get install postgresql`.
@@ -316,22 +316,31 @@ User now logs in as `grader` user.
    - Download the corresponding JSON file, open it et copy the contents.
 2. Open file `/var/www/catalog/catalog/client_secrets.json` and paste the previous copied contents into the this file.
 3. Open file `/var/www/catalog/catalog/__init__.py`. 
-   - Change
-   ```
-   CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
-   ```
-   to:
-   ```
-   CLIENT_ID = json.loads(open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id']
-   ```
-   - Change
-   ```
-   oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
-   ```
-   to:
-   ```
-   oauth_flow = flow_from_clientsecrets('/var/www/catalog/catalog/client_secrets.json', scope='')
-   ```
+   - Replace
+     ```
+     CLIENT_ID = json.loads(open('client_secrets.json', 'r').read())['web']['client_id']
+     ```
+     with:
+     ```
+     CLIENT_ID = json.loads(open('/var/www/catalog/catalog/client_secrets.json', 'r').read())['web']['client_id']
+     ```
+   - Replace
+     ```
+     oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+     ```
+     with:
+     ```
+     oauth_flow = flow_from_clientsecrets('/var/www/catalog/catalog/client_secrets.json', scope='')
+     ```
+4. Copy client_id from the Google API Console or the downloaded JSON file.
+5. Open file `/var/www/catalog/catalog/templates/login.html`.
+   - Replace client id in the line of `data-clientid=`.
+   
+ ### Step 15: Restart Apache to launch the app:
+ 1. restart Apache: `sudo service apache2 restart`
+ 2. Type `http://54.173.124.133.xip.io/` in browser.
+ 
+ Special thanks to [boisalai](https://github.com/boisalai), [iliketomatoes](https://github.com/iliketomatoes), [bencam](https://github.com/bencam) for really helpful documents.
 
  
 
