@@ -93,7 +93,8 @@ Install fail2ban in order to mitigate brute force attacks by users and bots alik
 At this point, user still logs in as `ubuntu` user.
 1. Run `sudo adduser grader`.
 2. Enter a password (twice) and fill out information for this new user.
-Now the `grader` user is created successfully.
+   Now the `grader` user is created successfully.
+In this project, the created user `grader` has a password `grader`.
 3. Edit the sudoers file: `sudo vi visudo`.
 4. Search for a line that looks like this: `root ALL=(ALL:ALL) ALL`
 5. Below this line, add a new line to give sudo privileges to grader user.
@@ -101,3 +102,19 @@ Now the `grader` user is created successfully.
    root    ALL=(ALL:ALL) ALL
    grader  ALL=(ALL:ALL) ALL
    ```
+6. Save and close the visudo file using CTRL + X and confirm with Y.
+7. Verify the sudo permissions of user `grader`:
+   * run `su - grader`
+   * enter password
+   * run `sudo -l`
+   * enter password again
+   If a line like the following should appear in the terminal, it means that the user `grader` has sudo permission:
+     ```
+     Matching Defaults entries for grader on ip-172-26-12-173.ec2.internal:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+    User grader may run the following commands on ip-172-26-12-173.ec2.internal:
+    (ALL : ALL) ALL
+    ```
+
+
