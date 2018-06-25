@@ -178,15 +178,59 @@ In this project, the created user `grader` has a password `grader`.
 4. Switch to Linux user `postgres` by running `sudo su - postgres`. Only use this user `postgres` for accessing PostgreSQL.
 5. Connect to psql for interacting with PostgreSQL by running: `psql`.
 6. Create a user `catalog` with a password `catalog` (or other passwords) by running:
+   ```
+   CREATE USER catalog WITH PASSWORD 'catalog';
+   ```
+7. Give user `catalog` the CREATEDB capability:
+   ```
+   ALTER USER catalog CREATEDB;
+   ```
+8. Check whether the user `catalog` is created with correct privileges by running `\du`. The returned results should look like:
+   ```
+                                     List of roles
+    Role name |                         Attributes                         | Member of 
+   -----------+------------------------------------------------------------+-----------
+    catalog   | Create DB                                                  | {}
+    postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+   ```
+9. Create a database named catalog owned by catalog user:
+   ```
+   CREATE DATABASE catalog WITH OWNER catalog;
+   ```
+10. Connect to the database: `\c catalog`.
+11. Revoke all rights: `REVOKE ALL ON SCHEMA public FROM public;`.
+12. Lock down the permissions to only let catalog role create tables: `GRANT ALL ON SCHEMA public TO catalog;`.
+13. Log out from PostgreSQL: `\q`. 
+14.Then return to the `grader` user: `exit`.
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
+### Step 12: Install git and clone the project Item Catalog
+User now logs in as `grader` user.
+1. Install git: `sudo apt-get install git`.
+2. Create a directory: `/var/www/catalog`.
+3. Change to directory `/var/www/catalog`: `cd /var/www/catalog`. 
+4. Clone the Item Catalog project from github:
    ```
-   CREATE ROLE catalog WITH LOGIN PASSWORD 'catalog';
+   sudo git clone https://github.com/blueblackw/item-catalog.git catalog
    ```
-7. Give the user `catalog` the ability to create databases:
+   Now there is a new folder **catalog** in directory `/var/www/catalog`
+5. Change to directory `/var/www`: `cd /var/www`.
+6. From the `/var/www` directory, change the ownership of the `catalog` directory to user `grader`:
+   ```
+   sudo chown -R grader:grader catalog/
+   ```
+7. Change to the `/var/www/catalog/catalog` directory: `cd /var/www/catalog/catalog`.
+8. Change the name of the **views.py** file to **__init__.py**: `mv views.py __init__.py`.
+9. In __init__.py, at the end of the file find:
+   ```
+   app.run(host='0.0.0.0', port=5000)
+   ```
+   Change this line to: `app.run()`.
 
-   ```
-   ALTER ROLE catalog CREATEDB
-   ```
+app.run()
+
+   
 
    
 
