@@ -149,6 +149,47 @@ In this project, the created user `grader` has a password `grader`.
    Local time is now:      Mon Jun 25 02:17:24 UTC 2018.
    Universal Time is now:  Mon Jun 25 02:17:24 UTC 2018.
    ```
+#### Reference
+[Ubuntu documentation](https://help.ubuntu.com/community/UbuntuTime)
+[Ask Ubuntu](https://askubuntu.com/questions/138423/how-do-i-change-my-timezone-to-utc-gmt/138442)
+
+
+### Step 10: Install and configure Apache to serve a Python mod_wsgi application
+- Install and configure Apache
+1. Run `sudo apt-get install apache2`.
+2. Enter the public IP of the Amazon Lightsail instance as a URL in a browser. If Apache is working fine, a page with the title 'Apache2 Ubuntu Default Page' should show.
+- Install mod_wsgi
+1. Install the Python 3 mod_wsgi package with command: 
+   
+   `sudo apt-get install libapache2-mod-wsgi python-dev`
+2. Enable `mod_wsgi` by running: `sudo a2enmod wsgi`.
+
+
+### Step 11: Install and configure PostgreSQL
+1. Install PostgreSQL: `sudo apt-get install postgresql`.
+2. Open file `/etc/postgresql/9.5/main/pg_hba.conf` with command `sudo vi /etc/postgresql/9.5/main/pg_hba.conf`.
+3. There should be content in file `/etc/postgresql/9.5/main/pg_hba.conf` as:
+   ```
+   local   all             postgres                                peer
+   local   all             all                                     peer
+   host    all             all             127.0.0.1/32            md5
+   host    all             all             ::1/128                 md5
+   ```
+4. Switch to Linux user `postgres` by running `sudo su - postgres`. Only use this user `postgres` for accessing PostgreSQL.
+5. Connect to psql for interacting with PostgreSQL by running: `psql`.
+6. Create a user `catalog` with a password `catalog` (or other passwords) by running:
+
+   ```
+   CREATE ROLE catalog WITH LOGIN PASSWORD 'catalog';
+   ```
+7. Give the user `catalog` the ability to create databases:
+
+   ```
+   ALTER ROLE catalog CREATEDB
+   ```
+
+   
+
    
 
 
