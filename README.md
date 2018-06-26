@@ -86,7 +86,7 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
 
 **Note:** Connecting to the instance through a browser no longer works because Lightsail's browser-based SSH access only works through port 22, which is now denied.
 
-12. Set `PermitRootLogin` property to `**no**` to prevent root user to manipulate this instance because a password can be brute forced:
+12. Set `PermitRootLogin` property to **`no`** to prevent root user to manipulate this instance because a password can be brute forced:
     - Open file `/etc/ssh/sshd_config`: `sudo vi /etc/ssh/sshd_config"`.
     - Change the configuration line of `PermitRootLogin prohibit-password` to **`PermitRootLogin no`**.
     - Save file.
