@@ -1,6 +1,7 @@
 # Linux Server Configuration
 A baseline installation of a Linux distribution on a virtual machine and prepare it to host the web applications, to include installing updates, securing it from a number of attack vectors and installing/configuring web and database servers.
 
+
 ## Project Tools Description 
 - Public IP address: 54.173.124.133
 - Acessible SSH port: 2200
@@ -11,7 +12,25 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 - Database server: [PostgreSQL](https://www.postgresql.org)
 - Local machine: MacBook Pro
 
+
+## Essential system packages used to build project
+- Apache2
+- mod_wsgi
+- PostgreSQL
+- git
+- pip
+- virtualenv
+- httplib2
+- Python Requests
+- oauth2client
+- SQLAlchemy
+- Flask
+- libpq-dev
+- Psycopg2
+
+
 ## Configuration Steps
+
 ### Step 1: Create an instance with Amazon Lightsail
 1. Log into [Amazon Lightsail]((https://lightsail.aws.amazon.com)) with an Amazon Web Service account. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
 2. Follow the `Create instance` link.
