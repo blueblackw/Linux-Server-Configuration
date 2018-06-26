@@ -49,13 +49,12 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
 1. Check to see the firewall status: `sudo ufw status`. It should look like this:
 2. Set the ufw firewall to block everything coming in: `sudo ufw default deny incoming`.
 3. Set the ufw firewall to allow everything outgoing: `sudo ufw default allow outgoing`.
-4. Set the ufw firewall to allow SSH: `sudo ufw allow ssh`.
-5. Allow all tcp connections for port `2200` so that SSH will work: `sudo ufw allow 2200/tcp`.
-6. Set the ufw firewall to allow a basic HTTP server: `sudo ufw allow www`.
-7. Set the ufw firewall to allow NTP: `sudo ufw allow 123/udp`.
-8. Set the ufw firewall to deny port `22`: sudo ufw deny 22.
-9. Enable the ufw firewall: `sudo ufw enable`.
-10. Check ufw status again: `sudo ufw status`. If done correctly, it should look like this:
+4. Allow all tcp connections for port `2200` so that SSH will work: `sudo ufw allow 2200/tcp`.
+5. Set the ufw firewall to allow a basic HTTP server (port 80): `sudo ufw allow www`.
+6. Set the ufw firewall to allow NTP (port 123): `sudo ufw allow 123/udp`.
+7. Set the ufw firewall to deny port `22`: `sudo ufw deny 22`.
+8. Enable the ufw firewall: `sudo ufw enable`.
+9. Check ufw status again: `sudo ufw status`. If done correctly, it should look like this:
     ```
     Status: active
 
