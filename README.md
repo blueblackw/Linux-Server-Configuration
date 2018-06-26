@@ -347,6 +347,9 @@ User now logs in as `grader` user.
 5. Open file `/var/www/catalog/catalog/templates/login.html`. Replace client id in the line of `data-clientid=` with the copied client_id.
    
  ### Step 15: Launch the application:
+ 1. Change the ownership of the project directories and files to the www-data user because Apache runs as the www-data user.       Change to directory `/var/www directory`, run:
+
+    `sudo chown -R www-data:www-data catalog/`
  1. restart Apache: `sudo service apache2 restart`
  2. Type **http://54.173.124.133.xip.io** in browser.
  
