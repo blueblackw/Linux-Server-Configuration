@@ -324,7 +324,7 @@ User now logs in as `grader` user.
    - Create an OAuth Client ID (under the Credentials tab).
    - Add **http://54.173.124.133.xip.io** and **http://54.173.124.133** to Authorized JavaScript origins.
    - Add **http://54.173.124.133.xip.io/login**, **http://54.173.124.133.xip.io/gconnect** and **http://54.173.124.133.xip.io/oauth2callback** to Authorized redirect URIs.
-   - Download the corresponding JSON file, open it et copy the contents.
+   - Download the corresponding JSON file, open it and copy the contents.
 2. Open file `/var/www/catalog/catalog/client_secrets.json` and paste the previous copied contents into the this file.
 3. Open file `/var/www/catalog/catalog/__init__.py`. 
    - Replace
