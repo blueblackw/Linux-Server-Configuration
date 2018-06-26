@@ -86,6 +86,12 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
 
 **Note:** Connecting to the instance through a browser no longer works because Lightsail's browser-based SSH access only works through port 22, which is now denied.
 
+12. Set `PermitRootLogin` property to **no** to prevent root user to manipulate this instance because a password can be brute forced:
+    - Open file `/etc/ssh/sshd_config`: `sudo vi /etc/ssh/sshd_config"`.
+    - Change the configuration line of `PermitRootLogin prohibit-password` to **`PermitRootLogin no`**.
+    - Save file.
+    - Restart ssh service: `sudo service ssh restart`.
+
 #### Reference 
 - [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-firewall-with-ufw-on-ubuntu-14-04)
 
@@ -108,7 +114,7 @@ At this point, user still logs in as `ubuntu` user.
    Now the `grader` user is created successfully.
 **In this project, the created user `grader` has a password `grader`.**
 3. Create a new file under the sudoers directory: `sudo vi /etc/sudoers.d/grader`.
-   Add one line `grader ALL=(ALL:ALL) ALL` in this file and save by hitting the Esc key and then entering “:” along with “wq”.
+   Add one line `grader ALL=(ALL:ALL) ALL` in this file and save by hitting the Esc key and then entering “:” along with    “wq”.
 4. Verify the sudo permissions of user `grader`:
    * run `su - grader`
    * enter password
