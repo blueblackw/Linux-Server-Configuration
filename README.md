@@ -144,6 +144,7 @@ At this point, user still logs in as `ubuntu` user.
 - From terminal on local machine, log in to virtual machine with `grader` user by:
 
   `ssh -i ~/.ssh/grader_key -p 2200 grader@54.173.124.133`.
+
 **From now on, user logs in to virtual machine as user `grader`.**
 #### Reference
 [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
