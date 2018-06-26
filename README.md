@@ -106,7 +106,7 @@ At this point, user still logs in as `ubuntu` user.
 1. Run `sudo adduser grader`.
 2. Enter a password (twice) and fill out information for this new user.
    Now the `grader` user is created successfully.
-In this project, the created user `grader` has a password `grader`.
+**In this project, the created user `grader` has a password `grader`.**
 3. Create a new file under the sudoers directory: `sudo vi /etc/sudoers.d/grader`.
    Add one line `grader ALL=(ALL:ALL) ALL` in this file and save by hitting the Esc key and then enter in “:” along with “wq”.
 4. Verify the sudo permissions of user `grader`:
