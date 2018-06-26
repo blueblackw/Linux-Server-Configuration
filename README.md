@@ -123,6 +123,8 @@ At this point, user still logs in as `ubuntu` user.
    User grader may run the following commands on ip-172-26-12-173.ec2.internal:
    (ALL : ALL) ALL
    ```
+#### Reference
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-add-and-delete-users-on-an-ubuntu-14-04-vps)
   
   
 ### Step 8: Log in to the AWS Lightsail instance with user `grader`
