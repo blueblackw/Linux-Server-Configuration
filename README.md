@@ -128,12 +128,12 @@ At this point, user still logs in as `ubuntu` user.
   
   
 ### Step 8: Log in to the AWS Lightsail instance with user `grader`
-- On local machine: 
-1. browse to directory `~/.ssh`. Run `ssh-keygen`.
+- In local machine terminal: 
+1. Browse to directory `~/.ssh`. Run `ssh-keygen`.
 2. Name the key pair, e.g. `grader_key`.
 3. Enter in a passphrase twice. Two files will be generated, e.g. `~/.ssh/grader_key` and `~/.ssh/grader_key.pub`.
 4. Run `cat ~/.ssh/grader_key.pub` and copy the content in the file.
-- On the grader's virtual machine:
+- On the virtual machine:
 1. From terminal on local machine, log in to the virtual machine with user `ubuntu` by running 
    `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`.
 2. In virtual machine, go to `grader`'s home directory by running: `cd /home/grader`.
