@@ -344,8 +344,7 @@ User now logs in as `grader` user.
      oauth_flow = flow_from_clientsecrets('/var/www/catalog/catalog/client_secrets.json', scope='')
      ```
 4. Copy client_id from the Google API Console or the downloaded JSON file.
-5. Open file `/var/www/catalog/catalog/templates/login.html`.
-   - Replace client id in the line of `data-clientid=` with the copied client_id.
+5. Open file `/var/www/catalog/catalog/templates/login.html`. Replace client id in the line of `data-clientid=` with the copied client_id.
    
  ### Step 15: Restart Apache to launch the app:
  1. restart Apache: `sudo service apache2 restart`
