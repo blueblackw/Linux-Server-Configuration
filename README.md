@@ -128,12 +128,12 @@ At this point, user still logs in as `ubuntu` user.
   
   
 ### Step 8: Log in to the AWS Lightsail instance with user `grader`
-- In local machine terminal: 
+- **In local machine terminal:** 
 1. Browse to directory `~/.ssh`. Run `ssh-keygen`.
 2. Name the key pair, e.g. `grader_key`.
 3. Enter in a passphrase twice. Two files will be generated, e.g. `~/.ssh/grader_key` and `~/.ssh/grader_key.pub`.
 4. Run `cat ~/.ssh/grader_key.pub` and copy the content in the file.
-- On the virtual machine:
+- **On the virtual machine:**
 1. From terminal on local machine, log in to the virtual machine with user `ubuntu` by running 
    `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`.
 2. In virtual machine, create a new directory `~/.ssh` by  running `mkdir .ssh`.
@@ -166,10 +166,10 @@ At this point, user still logs in as `ubuntu` user.
 
 
 ### Step 10: Install and configure Apache to serve a Python mod_wsgi application
-- Install and configure Apache
+- **Install and configure Apache**
 1. Run `sudo apt-get install apache2`.
 2. Enter the public IP of the Amazon Lightsail instance as a URL in a browser. If Apache is working fine, a page with the title 'Apache2 Ubuntu Default Page' should show.
-- Install mod_wsgi
+- **Install mod_wsgi**
 1. Install the mod_wsgi package (a tool that allows Apache to serve Flask applications) along with python-dev (a package with header files required when building Python extensions) with command: 
    
    `sudo apt-get install libapache2-mod-wsgi python-dev`
