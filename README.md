@@ -20,7 +20,7 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 5. Wait for the instance to start up.
 6. After the instance is running, click on the instance to enter the instance home. Under `Network` panel of the instance, click the button `Create static IP`. This is to prevent the ip to change every time you restart the instance.
 
-**Note:** For setting up OAuth for the application in this project, we need a DNS name that refers to the instance's IP address. We use the [xip.io](http://xip.io/) service to get one; this is a public service offered for free by Basecamp. For instance, the DNS name 54.173.124.133.xip.io refers to the server above.
+**Note:** For setting up OAuth for the application in this project, we need a DNS name that refers to the instance's IP address. We use the [xip.io](http://xip.io/) service to get one, which is a public service offered for free by Basecamp. For instance, the DNS name 54.173.124.133.xip.io refers to the server above.
 
 #### Reference 
 - [ServerPilot](https://serverpilot.io/community/articles/how-to-create-a-server-on-amazon-lightsail.html)
