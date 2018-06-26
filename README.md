@@ -14,11 +14,11 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 ## Configuration Steps
 ### Step 1: Create an instance with Amazon Lightsail
 1. Log into [Amazon Lightsail]((https://lightsail.aws.amazon.com)) with an Amazon Web Service account. If you don't already have an Amazon Web Services account, you'll be prompted to create one.
-2. Follow the 'Create an instance' link.
-3. Under "Create an instance", select platform as " Linux/Unix" and select a blueprint as "OS Only". Then under the options "OS Only", click to select "Ubuntu" as the operating system. 
-4. Choose the payment plan. Name the instance in the textbox on the bottom of the page. Click "Create".
+2. Follow the `Create an instance` link.
+3. Under `Create an instance`, select platform as `Linux/Unix` and select a blueprint as `OS Only`. Then under the options `OS Only`, click to select `Ubuntu` as the operating system. 
+4. Choose the payment plan. Name the instance in the textbox on the bottom of the page. Click `Create`.
 5. Wait for the instance to start up.
-6. After the instance is running, click on the instance to enter the instance home. Under "Network" panel of the instance, click the button "Create static IP". This is to prevent the ip to change every time you restart the instance.
+6. After the instance is running, click on the instance to enter the instance home. Under `Network` panel of the instance, click the button `Create static IP`. This is to prevent the ip to change every time you restart the instance.
 
 **Note:** For setting up OAuth for the application in this project, we need a DNS name that refers to the instance's IP address. We use the [xip.io](http://xip.io/) service to get one; this is a public service offered for free by Basecamp. For instance, the DNS name 54.173.124.133.xip.io refers to the server above.
 
