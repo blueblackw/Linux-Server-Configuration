@@ -243,8 +243,8 @@ User now logs in as `grader` user.
    sudo chown -R grader:grader catalog/
    ```
 8. Change to the `/var/www/catalog/catalog` directory: `cd /var/www/catalog/catalog`.
-9. Change the name of the **views.py** file to **__init__.py**: `mv views.py __init__.py`.
-10. In **__init__.py**, at the end of the file find:
+9. Change the name of the `views.py` file to `__init__.py`: `mv views.py __init__.py`.
+10. In `__init__.py`, at the end of the file find:
    ```
    app.run(host='0.0.0.0', port=5000)
    ```
@@ -252,9 +252,9 @@ User now logs in as `grader` user.
    ```
    app.run()
    ```
-11. In **__init__.py**, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-12. In database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-13. In db_init.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+11. In `__init__.py`, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+12. In `database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+13. In `db_init.py`, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
 14. Set up the database:
     ```
     python /var/www/catalog/catalog/database_setup.py
