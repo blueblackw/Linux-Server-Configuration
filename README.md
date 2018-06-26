@@ -170,7 +170,7 @@ At this point, user still logs in as `ubuntu` user.
 1. Run `sudo apt-get install apache2`.
 2. Enter the public IP of the Amazon Lightsail instance as a URL in a browser. If Apache is working fine, a page with the title 'Apache2 Ubuntu Default Page' should show.
 - Install mod_wsgi
-1. Install the Python 3 mod_wsgi package with command: 
+1. Install the mod_wsgi package (a tool that allows Apache to serve Flask applications) along with python-dev (a package with header files required when building Python extensions) with command: 
    
    `sudo apt-get install libapache2-mod-wsgi python-dev`
 2. Enable `mod_wsgi` by running: `sudo a2enmod wsgi`.
