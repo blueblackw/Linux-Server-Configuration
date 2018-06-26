@@ -27,10 +27,10 @@ A baseline installation of a Linux distribution on a virtual machine and prepare
 
 
 ### Step 2: SSH into the server
-1. From the Account menu on Amazon Lightsail, click on SSH keys tab and download the Default Private Key.
-2. Move this private key file named like LightsailDefaultPrivateKey-.pem to the local folder ~/.ssh and rename it lightsail_key.rsa.
-3. In the terminal of local machine, type `chmod 600 ~/.ssh/lightsail_key.rsa`.
-4. Connect tothe instance from termial by: `ssh -i ~/.ssh/lightsail_key.rsa ubuntu@13.59.39.163`
+1. From the `Account` menu on Amazon Lightsail, click on `SSH keys` tab and download the Default Private Key.
+2. Move this private key file named like `LightsailDefaultPrivateKey-*.pem` to the local folder `~/.ssh` and rename it `lightsail_key.rsa`.
+3. In the terminal of local machine, run: `chmod 600 ~/.ssh/lightsail_key.rsa`.
+4. Connect tothe instance from termial by: `ssh -i ~/.ssh/lightsail_key.rsa ubuntu@54.173.124.133`.
 
 
 ### Step 3: Update and upgrade installed packages
