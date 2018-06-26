@@ -80,7 +80,7 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
   Custom        UDP         123
   Custom        TCP         2200
   ```
-12. From terminal on local machine, log in to the ubuntu instance by running:
+12. From terminal on local machine, now ssh into the instance with port 2200 as user `ubuntu` by running:
 `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`
 
 **Note:** Connecting to the instance through a browser no longer works because Lightsail's browser-based SSH access only works through port 22, which is now denied.
