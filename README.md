@@ -113,7 +113,8 @@ At this point, user still logs in as `ubuntu` user.
    * run `su - grader`
    * enter password
    * run `sudo -l`
-   * enter password again
+   * enter password again.
+   
    If a line like the following should appear in the terminal, it means that the user `grader` has sudo permission:
    ```
    Matching Defaults entries for grader on ip-172-26-12-173.ec2.internal:
