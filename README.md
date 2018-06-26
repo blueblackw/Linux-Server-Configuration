@@ -253,7 +253,7 @@ User now logs in as `grader` user.
     app.run()
     ```
 11. In `__init__.py`, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
-12. In `database_setup.py, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
+12. In `database_setup.py`, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
 13. In `db_init.py`, replace `engine = create_engine('sqlite:///itemCatalog.db')` with `engine = create_engine('postgresql://catalog:catalog@localhost/catalog')`.
 14. Set up the database:
     ```
