@@ -115,7 +115,7 @@ At this point, user still logs in as `ubuntu` user.
    * run `sudo -l`
    * enter password again.
    
-   If a line like the following should appear in the terminal, it means that the user `grader` has sudo permission:
+   If a line like the following appears in the terminal, it means that the user `grader` has sudo permission:
    ```
    Matching Defaults entries for grader on ip-172-26-12-173.ec2.internal:
    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
