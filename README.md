@@ -136,12 +136,11 @@ At this point, user still logs in as `ubuntu` user.
 - On the virtual machine:
 1. From terminal on local machine, log in to the virtual machine with user `ubuntu` by running 
    `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`.
-2. In virtual machine, go to `grader`'s home directory by running: `cd /home/grader`.
-3. Create a new directory named `.ssh` by running `mkdir .ssh`.
-4. Create a new file `authorized_keys` by running `sudo vi authorized_keys` and then paste the copied content from `grader_key.pub` on local machine to this file `authorized_keys`. Save file `authorized_keys`.
-5. On virtual machine, give permissions by running `chmod 700 .ssh` and `chmod 644 .ssh/authorized_keys`.
-6. Check in `/etc/ssh/sshd_config` file whether `PasswordAuthentication` is set to `no`. If `PasswordAuthentication` is not set to `no`, set it to `no` and save file.
-7. Restart SSH with `sudo service ssh restart`.
+2. In virtual machine, create a new directory `~/.ssh` by  running `mkdir .ssh`.
+3. Create a new file `authorized_keys` by running `sudo vi authorized_keys` and then paste the copied content from `grader_key.pub` on local machine to this file `authorized_keys`. Save file `authorized_keys`.
+4. On virtual machine, give permissions by running `chmod 700 .ssh` and `chmod 644 .ssh/authorized_keys`.
+5. Check in `/etc/ssh/sshd_config` file whether `PasswordAuthentication` is set to `no`. If `PasswordAuthentication` is not set to `no`, set it to `no` and save file.
+6. Restart SSH with `sudo service ssh restart`.
 - From terminal on local machine, log in to virtual machine with `grader` user by:
 
   `ssh -i ~/.ssh/grader_key -p 2200 grader@54.173.124.133`.
