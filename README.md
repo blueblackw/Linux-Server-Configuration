@@ -154,7 +154,7 @@ At this point, user still logs in as `ubuntu` user.
 ### Step 9: Configure the local timezone to UTC.
 1. Run `sudo dpkg-reconfigure tzdata`.
 2. In the pop up console, select `None of the above`.
-3. Select `UTC` and confirm. User will see 
+3. Select `UTC` and confirm. User will see something like:
    ```
    Current default time zone: 'Etc/UTC'
    Local time is now:      Mon Jun 25 02:17:24 UTC 2018.
