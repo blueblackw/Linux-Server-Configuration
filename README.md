@@ -40,8 +40,8 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
 
 
 ### Step 4: Change the SSH port from 22 to 2200
-1. Open file /etc/ssh/sshd_config with command `vi /etc/ssh/sshd_config`.
-2. Change the port number on line 5 to `2200`. Save the change.
+1. Open file /etc/ssh/sshd_config with command `sudo vi /etc/ssh/sshd_config`.
+2. Change the port number on line 5 from `22` to `2200`. Save the file.
 3. Restart SSH: `sudo service ssh restart`.
 
 
