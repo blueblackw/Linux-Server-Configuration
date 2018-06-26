@@ -147,7 +147,7 @@ At this point, user still logs in as `ubuntu` user.
 
 **From now on, user logs in to virtual machine as user `grader`.**
 #### Reference
-[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2)
+[DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys--2), 
 [Ubuntu documentation](https://help.ubuntu.com/community/SSH/OpenSSH/Keys)
 
 
@@ -161,7 +161,7 @@ At this point, user still logs in as `ubuntu` user.
    Universal Time is now:  Mon Jun 25 02:17:24 UTC 2018.
    ```
 #### Reference
-[Ubuntu documentation](https://help.ubuntu.com/community/UbuntuTime)
+[Ubuntu documentation](https://help.ubuntu.com/community/UbuntuTime), 
 [Ask Ubuntu](https://askubuntu.com/questions/138423/how-do-i-change-my-timezone-to-utc-gmt/138442)
 
 
