@@ -70,9 +70,16 @@ Now user logs in to the Amazon Lightsail Instance as `ubuntu` user.
     22 (v6)                    DENY        Anywhere (v6)
     ```
 11. Update the external (Amazon Lightsail) firewall on the browser: 
-- Click on the 'Manage' option of the Amazon Lightsail Instance.
-- Select "Networking" tab.
+- Click on the `Manage` option of the Amazon Lightsail Instance.
+- Select `Networking` tab.
 - Change the firewall configuration to match the internal firewall settings above: only ports `80`(TCP), `123`(UDP), and `2200`(TCP) should be allowed. Deny the default port `22`.
+  After the change, the Application, Protocol, Port range should be:
+  ```
+  Application   Protocol    Port range
+  HTTP          TCP         80
+  Custom        UDP         123
+  Custom        TCP         2200
+  ```
 12. From terminal on local machine, log in to the ubuntu instance by running:
 `ssh -i ~/.ssh/lightrail_key.rsa -p 2200 ubuntu@54.173.124.133`
 
