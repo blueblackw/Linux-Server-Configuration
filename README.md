@@ -355,6 +355,7 @@ User now logs in as `grader` user.
  
  **Note:** The public ip **http://54.173.124.133** and URL **http://ec2-54-173-124-133.compute-1.amazonaws.com** do not work for google login. There is an "400 invalid_request" error after clicking on the google login button. Must use **http://54.173.124.133.xip.io** for the function of google login.
  
+ 
  Special thanks to [boisalai](https://github.com/boisalai), [iliketomatoes](https://github.com/iliketomatoes), [bencam](https://github.com/bencam) for really helpful documents.
 
  
