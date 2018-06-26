@@ -211,8 +211,8 @@ At this point, user still logs in as `ubuntu` user.
 10. Connect to the database: `\c catalog`.
 11. Revoke all rights: `REVOKE ALL ON SCHEMA public FROM public;`.
 12. Lock down the permissions to only let catalog role create tables: `GRANT ALL ON SCHEMA public TO catalog;`.
-13. Log out from PostgreSQL: `\q`. 
-14.Then return to the `grader` user: `exit`.
+13. Log out from PostgreSQL: `\q`.
+14. Return to the `grader` user: `exit`.
 #### Reference
 [DigitalOcean](https://www.digitalocean.com/community/tutorials/how-to-secure-postgresql-on-an-ubuntu-vps)
 
